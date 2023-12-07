@@ -2,6 +2,12 @@ import fs from "fs";
 import Papa from "papaparse";
 import { exec } from "child_process";
 import express from "express";
+import OpenAI  from 'openai';
+import bp from 'body-parser';
+
+const openai = new OpenAI({
+  apiKey: "" // This is also the default, can be omitted
+});
 
 const parseAndWrite = () => {
   let csv = fs.readFileSync("WUR-modules.csv", "utf8");
@@ -17,6 +23,7 @@ const parseAndWrite = () => {
     }
   });
 };
+
 
 const executeQuery = (outcome, callback) => {
   const cmd = `llm similar readmes -c '${outcome}' > answer.json`;
@@ -61,7 +68,31 @@ app.get("/:outcome", (req, res) => {
   });
 });
 
+// Defining an endpoint to handle incoming requests
+app.post('/converse', (req, res) => {
+  // Extracting the user's message from the request body
+  const message = req.body.message;
+  // Calling the OpenAI API to complete the message
+  openai.createCompletion({
+    model: "text-davinci-003",
+    // Adding the conversation context to the message being sent
+    prompt: conversationContextPrompt + message,
+    temperature: 0.9,
+    max_tokens: 150,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0.6,
+    stop: [" Human:", " AI:"],
+  })
+  .then((response) => {
+    // Sending the response data back to the client
+    res.send(response.data.choices);
+  });
+});
+
 app.use(express.static("public"));
+
+app.use(bp.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

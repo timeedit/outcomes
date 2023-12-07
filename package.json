@@ -15,5 +15,8 @@
   "devDependencies": {
     "express": "^4.18.2",
     "papaparse": "^5.4.1"
+  },
+  "dependencies": {
+    "openai": "^4.20.1"
   }
 }
