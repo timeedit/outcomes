@@ -2,12 +2,8 @@ import fs from "fs";
 import Papa from "papaparse";
 import { exec } from "child_process";
 import express from "express";
-import OpenAI  from 'openai';
-import bp from 'body-parser';
-
-const openai = new OpenAI({
-  apiKey: "" // This is also the default, can be omitted
-});
+import OpenAI from "openai";
+import bodyParser from "body-parser";
 
 const parseAndWrite = () => {
   let csv = fs.readFileSync("WUR-modules.csv", "utf8");
@@ -23,7 +19,6 @@ const parseAndWrite = () => {
     }
   });
 };
-
 
 const executeQuery = (outcome, callback) => {
   const cmd = `llm similar readmes -c '${outcome}' > answer.json`;
@@ -58,7 +53,14 @@ const executeQuery = (outcome, callback) => {
 
 // Set up a server to listen to requests on port 3000/value
 const app = express();
-const port = 3000;
+const port = 3100;
+
+//app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.get("/api/:outcome", (req, res) => {
   const outcome = req.params.outcome;
@@ -68,31 +70,27 @@ app.get("/api/:outcome", (req, res) => {
   });
 });
 
-// Defining an endpoint to handle incoming requests
-app.post('/converse', (req, res) => {
+app.post("/api/chatbot/converse", (req, res) => {
   // Extracting the user's message from the request body
+  console.log(req.body);
   const message = req.body.message;
   // Calling the OpenAI API to complete the message
-  openai.createCompletion({
-    model: "text-davinci-003",
-    // Adding the conversation context to the message being sent
-    prompt: conversationContextPrompt + message,
-    temperature: 0.9,
-    max_tokens: 150,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0.6,
-    stop: [" Human:", " AI:"],
-  })
-  .then((response) => {
-    // Sending the response data back to the client
-    res.send(response.data.choices);
-  });
+  const chatCompletion = openai.chat.completions
+    .create({
+      messages: [{ role: "user", content: message }],
+      model: "gpt-3.5-turbo",
+    })
+    .then((response) => {
+      // Sending the response data back to the client
+      res.send(response.data.choices);
+    });
+});
+
+const openai = new OpenAI({
+  apiKey: "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", // This is also the default, can be omitted
 });
 
 app.use(express.static("public"));
-
-app.use(bp.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
