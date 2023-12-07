@@ -60,7 +60,7 @@ const executeQuery = (outcome, callback) => {
 const app = express();
 const port = 3000;
 
-app.get("/:outcome", (req, res) => {
+app.get("/api/:outcome", (req, res) => {
   const outcome = req.params.outcome;
   console.log("Outcome: ", outcome);
   executeQuery(outcome, (data) => {

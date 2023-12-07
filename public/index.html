@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>TE Module Outcome Wizard</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            width: 50%;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        #results div {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        #results h2 {
+            margin: 0;
+        }
+        #results p {
+            margin: 0;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            float: right;
+            border: solid 1px black;
+            border-radius: 5px;
+        }     
+    </style>
 </head>
 <body>
+    <img src="logo.jpeg" class="logo">
     <h1>Modules with Similar Outcomes</h1>
     <p>Enter some module information to find modules with similar outcomes.</p>
     <form action="http://localhost:3000" method="post">
@@ -22,7 +50,7 @@
             e.preventDefault();
             var search = encodeURIComponent(document.getElementById("searchParams").value);
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', `http://localhost:3000/${search}`);
+            xhr.open('GET', `http://localhost:3000/api/${search}`);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function() {
                 const resultData = JSON.parse(xhr.responseText);
