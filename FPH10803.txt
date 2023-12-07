@@ -1,0 +1,1 @@
+["FPH10803","Physical Chemistry for Food Scientists","6AF","After successful completion of this course students are expected to be able to:- describe the concepts of entropy and enthalpy;- recall the colligative phenomena, such as freeze point depression, boiling point elevation, and osmotic pressure;- apply this knowledge to basic physical chemical processes in foods.",""]

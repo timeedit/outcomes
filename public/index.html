@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+</head>
+<body>
+    <h1>Modules with Similar Outcomes</h1>
+    <p>Enter some module information to find modules with similar outcomes.</p>
+    <form action="http://localhost:3000" method="post">
+        <textarea rows="5" cols="50" id="searchParams" name="search" placeholder="Search..."></textarea>
+        <br><input type="submit" value="Search">
+    </form>
+    <div id="results"></div>
+    <script>
+        // This is the JavaScript file that will be loaded by the browser
+        // It will make an AJAX request to the server and display the results
+        // in the div above
+        var form = document.querySelector('form');
+        var results = document.querySelector('#results');
+        form.addEventListener('submit', function(e) {
+            results.innerHTML = '';
+            e.preventDefault();
+            var search = encodeURIComponent(document.getElementById("searchParams").value);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `http://localhost:3000/${search}`);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                const resultData = JSON.parse(xhr.responseText);
+                const resultHTML = resultData.map(result => {
+                    const moduleInfo = JSON.parse(result.content)
+                    return `<div>
+                        <h2>${moduleInfo[1]} (${Math.floor(result.score * 100)}%)</h2>
+                        <p>${moduleInfo[3]}</p>
+                    </div>`;
+                }).join('');
+                results.innerHTML = resultHTML;
+            };
+            xhr.send(JSON.stringify({ search: search }));
+        });
+    </script>
+</body>
+</html>

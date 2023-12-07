@@ -1,0 +1,1 @@
+["ZRC00800","Refresher course Mathematics","1AF","After the course the student is expected to have the knowledge and skills to:_x000d_- solve (simple) equations using power -, exponential -, and logarithmic functions;_x000d_- determine the derivative of (composite) functions;_x000d_- use the derivative to determine extremes of functions.",""]

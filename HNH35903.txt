@@ -1,0 +1,1 @@
+["HNH35903","Miscellaneous Tools in Epidemiological Research","3DL","After successful completion of this course students are expected to be able to:-&nbsp;apply state-of-the-art methods to solve problems that are commonly encountered in epidemiological studies on (global) nutrition and health;-&nbsp;adapt and combine selected functions in Stata and R.",""]

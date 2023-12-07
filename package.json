@@ -1,0 +1,19 @@
+{
+  "name": "outcomes",
+  "version": "1.0.0",
+  "description": "Yes",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "llm"
+  ],
+  "author": "TeamEdit",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "papaparse": "^5.4.1"
+  }
+}

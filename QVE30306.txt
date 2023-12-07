@@ -1,0 +1,1 @@
+["QVE30306","Quantitative Veterinary Epidemiology","5MO","After successful completion of this course students are expected to be able to:- design epidemiological studies including sample size calculations;- analyze data with advanced statistical methods, calculate epidemiological parameters and interpret the outcomes;- evaluate literature relevant to veterinary epidemiology.",""]

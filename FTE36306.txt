@@ -1,0 +1,1 @@
+["FTE36306","Robotics - mobile platforms","2MO","After successful completion of this course students are expected to be able to:- explain the key concepts and theories in mobile robotics;- apply these methods to implement key components of a robotic system;- implement and combine different methods to control a mobile robot in an agricultural context.",""]

@@ -1,0 +1,1 @@
+["XEN30304","Food and Bioprocess Control","5WD","After successful completion of this course students are expected to be able to:- discuss methods and tools of process control and available sensors;- study and understand food process instrumentation in the food industry;- understand applications of process control science for food unit operations.",""]

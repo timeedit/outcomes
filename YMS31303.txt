@@ -1,0 +1,1 @@
+["YMS31303","Metropolitan Data 1","1WD +  2WD","After successful completion of this course students are expected to be able to: - understand the main concepts of data-driven studies in order to gain new insights from data; - apply concepts of data collection, processing, exploration and analysis in the context of real-world metropolitan data.",""]
