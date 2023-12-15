@@ -5,6 +5,7 @@ import express from "express";
 import OpenAI from "openai";
 import bodyParser from "body-parser";
 
+// https://studyhandbook.wur.nl/modules/PCC35303
 const parseAndWrite = () => {
   let csv = fs.readFileSync("WUR-modules.csv", "utf8");
 
